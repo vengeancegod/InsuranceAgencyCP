@@ -1,0 +1,45 @@
+﻿@model InsuranceAgency__.Models.Payment
+
+@{
+    ViewData["Title"] = "Create";
+}
+<head>
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("Заполните соответствующие данные по оплате договора!");
+        }
+    </script>
+
+</head>
+<h1>Отправка данных об оплате</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ReceiptNumber" class="control-label">Номер квитанции</label>
+                <input asp-for="ReceiptNumber" class="form-control" />
+                <span asp-validation-for="ReceiptNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FIO" class="control-label">ФИО плательщика</label>
+                <input asp-for="FIO" class="form-control" />
+                <span asp-validation-for="FIO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatePayment" class="control-label">Дата оплаты</label>
+                <input asp-for="DatePayment" class="form-control" />
+                <span asp-validation-for="DatePayment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Отправить" class="btn btn-primary" onclick=" alert('Данные успешно отправлены!')" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="\Home\Index">Вернуться назад</a>
+</div>
+

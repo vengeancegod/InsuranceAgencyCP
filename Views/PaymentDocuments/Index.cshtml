@@ -1,0 +1,101 @@
+﻿@model IEnumerable<InsuranceAgency__.Models.PaymentDocument>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <style>
+        .row {
+            margin-left: 0.1%;
+        }
+
+        main {
+            width: 98%;
+            margin: 0 auto;
+        }
+
+        table {
+            border: solid 5px #B0C4DE;
+        }
+
+        th {
+            border: solid 5px #B0C4DE;
+        }
+
+        td {
+            border: solid 5px #B0C4DE;
+        }
+
+        body {
+            background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        th {
+            padding: 19px;
+        }
+    </style>
+</head>
+<h1>Просмотр платёжных данных</h1>
+
+<table class="table">
+    <form id="formSearch7" method="post">
+        <div class="row" id="SearchBox">
+            <p>
+                <input type="text" id="AccountNumber" name="AccountNumber" placeholder="Поиск по номеру счёта" />
+                <input type="submit" id="submitsearch" value="Поиск" />
+            </p>
+        </div>
+    </form>
+    <thead>
+        <tr>
+            <th>Номер счета</th>
+            <th>Банк получатель</th>
+            <th>Дата выставления счета</th>
+            <th>Название услуги</th>
+            <th>Стоимость услуги</th>
+            <th>ФИО страхователя</th>
+            <th>Способ оплаты</th>
+            <th>Идентификатор клиента</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeneficiaryBankName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoicingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameOfService)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FIOPolicyholder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMethod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Уалить</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

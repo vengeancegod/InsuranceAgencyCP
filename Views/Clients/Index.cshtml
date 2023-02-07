@@ -1,0 +1,107 @@
+﻿@model IEnumerable<InsuranceAgency__.Models.Client>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<html>
+<head>
+    <style>
+        .row{
+            margin-left:0.1%;
+        }
+        main {
+            width: 98%;
+            margin: 0 auto;
+        }
+        table {
+            border: solid 5px #B0C4DE;
+        }
+        th {
+            border: solid 5px #B0C4DE;
+        }
+        td {
+            border: solid 5px #B0C4DE;
+        }
+        body {
+            background-color: white;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        th {
+            padding: 19px;
+        }
+        body {
+            background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Список клиентов</h1>
+
+        <p>
+            <a asp-action="Create">Добавить клиента</a>
+        </p>
+        <table class="table">
+            <form id="formSearch" method="post">
+                <div class="row" id="SearchBox">
+                    <p>
+                        <input type="text" id="FIO" name="FIO" placeholder="Поиск по ФИО" />
+                        <input type="submit" id="submitsearch" value="Поиск" />
+                    </p>
+                </div>
+            </form>
+            <thead>
+                <tr>
+                    <th>Идентификатор клиента</th>
+                    <th>Тип клиента</th>
+                    <th>Фио клиента</th>
+                    <th>Серия паспорта</th>
+                    <th>Номер паспорта</th>
+                    <th>Дата рождения</th>
+                    <th>Адрес проживания</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypeClient)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FIO)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PassportSeries)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PassportNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlaceOfResidence)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> 
+                        <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> 
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <div>
+            <a href="\Home\Index">Вернуться назад</a>
+        </div>
+    </main>
+</body>
+</html>

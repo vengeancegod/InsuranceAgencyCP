@@ -1,0 +1,194 @@
+﻿@model IEnumerable<InsuranceAgency__.Models.Applications>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("Перед вами список всех существующих заявок, используйте поиск для просмотра определённых заявок !");
+        }
+    </script>
+    <style>
+        .row {
+            margin-left: 0.1%;
+        }
+
+        main {
+            width: 98%;
+            margin: 0 auto;
+        }
+
+        table {
+            border: solid 5px #B0C4DE;
+        }
+
+        th {
+            border: solid 5px #B0C4DE;
+        }
+
+        td {
+            border: solid 5px #B0C4DE;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        th {
+            padding: 19px;
+        }
+    </style>
+</head>
+<h1>Список заявок</h1>
+
+<form id="formSearch2" method="post">
+    <div class="row" id="SearchBox">
+        <p>
+            <input type="text" id="ClientId" name="ClientId" placeholder="Поиск по идентификатору" />
+            <input type="submit" id="submitsearch" value="Поиск" />
+        </p>
+    </div>
+</form>
+@if (User.IsInRole("Клиент"))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Идентификатор
+                </th>
+                <th>
+                    ФИО
+                </th>
+                <th>
+                    Оформить/расторгнуть договор
+                </th>
+                <th>
+                    Вид страхования
+                </th>
+                <th>
+                    Страховая сумма
+                </th>
+                <th>
+                    Статус заявки
+                </th>
+                <th>
+                    Идентификатор клиента
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractValidity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsuranceType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsuranceAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+@if (User.IsInRole("Страховой агент"))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Идентификатор
+                </th>
+                <th>
+                    ФИО
+                </th>
+                <th>
+                    Номер паспорта
+                </th>
+                <th>
+                    Серия паспорта
+                </th>
+                <th>
+                    Оформить/расторгнуть договор
+                </th>
+                <th>
+                    Вид страхования
+                </th>
+                <th>
+                    Страховая сумма
+                </th>
+                <th>
+                    Статус заявки
+                </th>
+                <th>
+                    Идентификатор клиента
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassportNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassportSeries)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractValidity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsuranceType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsuranceAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

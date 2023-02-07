@@ -1,0 +1,66 @@
+﻿@model InsuranceAgency__.Models.PaymentDocument
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Детальный просмотр платежных данных</h1>
+
+<div>
+    <h4>Платежные данные</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Номер счета
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AccountNumber)
+        </dd>
+        <dt class="col-sm-2">
+            Банк получатель
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BeneficiaryBankName)
+        </dd>
+        <dt class="col-sm-2">
+            Дата выставления счета
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.InvoicingDate)
+        </dd>
+        <dt class="col-sm-2">
+            Название услуги
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NameOfService)
+        </dd>
+        <dt class="col-sm-2">
+            Стоимость услуги
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ServiceAmount)
+        </dd>
+        <dt class="col-sm-2">
+            ФИО страхователя
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FIOPolicyholder)
+        </dd>
+        <dt class="col-sm-2">
+            Способ оплаты
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PaymentMethod)
+        </dd>
+        <dt class="col-sm-2">
+            Идентификатор клиента
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ClientId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Изменить</a> |
+        <a href="\Home\Index">Вернуться назад</a>
+</div>

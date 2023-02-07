@@ -1,0 +1,127 @@
+﻿
+@{ ViewData["Title"] = "Главная"; }
+<html>
+<head>
+    <style>
+        body {
+            background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+        }
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        button {
+            width: 280px;
+            height: 100px;
+            margin: 5px;
+            font-family: 'Krona One', sans-serif;
+            font-size: 16px;
+            color: black;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: 300ms;
+        }
+        .cyan {
+            background: #B0C4DE;
+            box-shadow: 0px 5px #389cb5, 0px 10px 10px rgba(0,0,0,0.25);
+            z-index: -1;
+        }
+        button:hover {
+            transform: translateY(5px);
+            box-shadow: 0px 0px transparent, 0px 5px 10px rgba(0,0,0,0.25);
+        }
+        button:focus {
+            outline: none;
+        }
+
+    </style>
+    <script language="JavaScript">
+        window.onbeforeunload = function () {
+            localStorage.setItem('comment-save', document.getElementById('textarea').value);
+        }
+        window.onload = function () {
+            document.getElementById('textarea').value = localStorage.getItem('comment-save');
+        }
+        function AddInfo() {
+            document.getElementById('textarea').value = document.getElementById('buttonInfo').value.replace(/.+[\\\/]/, "");
+        };
+    </script>
+</head>
+<body class="Home">
+    <h1 align="center">Добро пожаловать!</h1>
+    <br>
+    @if (User.IsInRole("Клиент"))
+    {
+        <h1>Вы выполнили вход под учётной записью клиента, пожалуйста выберите действие, которое хотите совершить !</h1>
+        <br />
+        <div align="center">
+            <a href="\Applications\Create"><button class="cyan noselect">Подать заявку</button></a>
+            <a href="\Applications\index"><button class="cyan noselect">Список заявок</button></a>
+            <a href="\Images\Index"><button class="cyan noselect">Онлайн экспертиза</button></a>
+            <a href="\PersonalInfoes\Create"><button class="cyan noselect">Отправка личных данных</button></a>
+            <a href="\PaymentDocuments\Index"><button class="cyan noselect">Просмотр платёжных данных</button></a>
+            <a href="\Payments\Create"><button class="cyan noselect">Отправка данных об оплате</button></a>
+            <a href="\Treaties\Index"><button class="cyan noselect">Просмотр договоров</button></a>
+        </div>
+        <br>
+        <br>
+        <textarea readonly type="text" id="textarea" rows="10" cols="170"></textarea>
+    }
+    @if (User.IsInRole("Администратор"))
+    {
+        <h1>Вы выполнили вход под учётной записью администратора, пожалуйста выберите действие, которое хотите совершить !</h1>
+        <br />
+        <div align="center">
+            <a href="\Managers\index"><button class="cyan noselect">Просмотр данных о менеджерах</button></a>
+        </div>
+        <br>
+        <br>
+        <label style="margin-right:10px">Добавление информации на сайт:</label><input type="text" onchange="AddInfo();" id="buttonInfo">
+        <input style="background: #B0C4DE; border-radius: 5px;" type="submit" value="Добавить" /><br>
+        <textarea type="text" id="textarea" rows="10" cols="170"></textarea>
+    }
+    @if (User.IsInRole("Менеджер"))
+    {
+        <h1>Вы выполнили вход под учётной записью менеджера, пожалуйста выберите действие, которое хотите совершить !</h1>
+        <br />
+        <div align="center">
+            <a href="\Treaties\Index"><button class="cyan noselect">Просмотр договоров</button></a>
+            <a href="\Clients\index"><button class="cyan noselect">Изменить данные клиентов</button></a>
+            <a href="\InsuranceAgents\index"><button class="cyan noselect">Просмотр данных о агентах</button></a>
+            <a href="\Clients\Index"><button class="cyan noselect">Просмотр данных о клиентах</button></a>
+        </div>
+        <br>
+        <br>
+        <textarea readonly type="text" id="textarea" rows="10" cols="170"></textarea>
+    }
+    @if (User.IsInRole("Страховой агент"))
+    {
+        <h1>Вы выполнили вход под учётной записью страхового агента, пожалуйста выберите действие, которое хотите совершить !</h1>
+        <div align="center">
+            <a href="\Applications\index"><button class="cyan noselect">Список входящих заявок</button></a>
+            <a href="\PersonalInfoes\index"><button class="cyan noselect">Cписок входящих данных</button></a>
+            <a href="\Images\Index"><button class="cyan noselect">Онлайн экспертиза</button></a>
+            <a href="\PaymentDocuments\Create"><button class="cyan noselect">Отправка платёжных данных</button></a>
+            <a href="\Payments\index"><button class="cyan noselect">Просмотр данных об оплатах</button></a>
+        </div>
+        <br>
+        <div align="center">
+            <a href="\Clients\Create"><button class="cyan noselect">Занести клиента в БД</button></a>
+            <a href="\Clients\Index"><button class="cyan noselect">Просмотр клиентов</button></a>
+            <a href="\Treaties\Create"><button class="cyan noselect">Оформить клиентский договор</button></a>
+            <a href="\Treaties\Index"><button class="cyan noselect">Просмотр договоров</button></a>
+        </div>
+        <br>
+        <textarea readonly type="text" id="textarea" rows="10" cols="170"></textarea>
+    }
+    <br>
+</body>
+</html>
+<th>

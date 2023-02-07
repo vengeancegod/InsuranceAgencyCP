@@ -1,0 +1,42 @@
+﻿@model InsuranceAgency__.Models.InsuranceAgent
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Детальный просмотр данных о страховом агенте</h1>
+
+<div>
+    <h4>Страховой агент</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            ФИО
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FIO)
+        </dd>
+        <dt class = "col-sm-2">
+           Дата рождения
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Возраст
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class = "col-sm-2">
+            Зарпата
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wage)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Изменить</a> |
+    <a href="\Home\Index">Вернуться назад</a>
+</div>

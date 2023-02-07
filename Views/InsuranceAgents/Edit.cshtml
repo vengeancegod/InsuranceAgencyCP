@@ -1,0 +1,49 @@
+﻿@model InsuranceAgency__.Models.InsuranceAgent
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Правка данных страхового агента</h1>
+
+<h4>Страховой агент</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FIO" class="control-label">ФИО</label>
+                <input asp-for="FIO" class="form-control" />
+                <span asp-validation-for="FIO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label">Дата рождения</label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label">Возраст</label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wage" class="control-label">Зарплата</label>
+                <input asp-for="Wage" class="form-control" />
+                <span asp-validation-for="Wage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Изменить" class="btn btn-primary" onclick=" alert('Данные успешно изменены!')"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="\Home\Index">Вернуться назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<InsuranceAgency__.Models.Expertise>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Онлайн экспертиза</h1>
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+@foreach (var item in Model) {
+<div class="card text-white bg-dark mb-3" style="width:50rem" align="center";>
+    @if (item.Image != null)
+    {
+        <div class="card-header">Объект страхования</div>
+        <div class="card-header">Объект страхования</div>
+        <img class="card-img-top" src="@($"Expertises/Expertise{item.Id}/{item.Image.ImageTitle}")" alt="Фото" />
+    }
+    <div class="card-body">
+        <p class="card-text">@Html.DisplayFor(modelItem => item.InsuranceType)</p>
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+    </div>
+</div>
+     
+}
+    

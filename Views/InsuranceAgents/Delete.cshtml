@@ -1,0 +1,45 @@
+﻿@model InsuranceAgency__.Models.InsuranceAgent
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удаление страхового агента</h1>
+
+<h3>Действительно ли вы хотите удалить страхового агента ?</h3>
+<div>
+    <h4>Страховой агент</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            ФИОы
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FIO)
+        </dd>
+        <dt class = "col-sm-2">
+            Дата рождения
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt class = "col-sm-2">
+            Возраст
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class = "col-sm-2">
+            Зарплата
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Wage)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" onclick=" alert('Страховой агент успешно удалён!')"/> |
+        <a href="\Home\Index">Вернуться назад</a>
+    </form>
+</div>

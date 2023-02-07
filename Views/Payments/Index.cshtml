@@ -1,0 +1,102 @@
+﻿@model IEnumerable<InsuranceAgency__.Models.Payment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <style>
+        .row {
+            margin-left: 0.1%;
+        }
+
+        main {
+            width: 98%;
+            margin: 0 auto;
+        }
+
+        table {
+            border: solid 5px #B0C4DE;
+        }
+
+        th {
+            border: solid 5px #B0C4DE;
+        }
+
+        td {
+            border: solid 5px #B0C4DE;
+        }
+
+        body {
+            background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        th {
+            padding: 19px;
+        }
+    </style>
+</head>
+<h1>Список всех оплат</h1>
+
+<table class="table">
+    <form id="formSearch6" method="post">
+        <div class="row" id="SearchBox">
+            <p>
+                <input type="text" id="FIO" name="FIO" placeholder="Поиск по ФИО" />
+                <input type="submit" id="submitsearch" value="Поиск" />
+            </p>
+        </div>
+    </form>
+    <thead>
+        <tr>
+            <th>
+                Идентификатор оплаты
+            </th>
+            <th>
+                Номер квитанции
+            </th>
+            <th>
+                Фио плательщика
+            </th>
+            <th>
+                Дата оплаты
+            </th>
+            <th>
+                Идентификатор клиента
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceiptNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FIO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatePayment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a href="\Home\Index">Вернуться назад</a>
+</div>

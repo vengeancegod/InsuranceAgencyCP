@@ -1,0 +1,51 @@
+﻿@model InsuranceAgency__.Models.Payment
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удаление данных об оплате</h1>
+
+<h3>Действительно ли вы хотите удалить данные об оплате ?</h3>
+<div>
+    <h4>Payment</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Идентификатор оплаты
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            Номер квитанции
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReceiptNumber)
+        </dd>
+        <dt class="col-sm-2">
+            ФИО плательщика
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FIO)
+        </dd>
+        <dt class="col-sm-2">
+            Дата оплаты
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DatePayment)
+        </dd>
+        <dt class="col-sm-2">
+            Идентификатор клиента
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ClientId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" onclick=" alert('Данные успешно удалены!')"/> |
+        <a href="\Home\Index">Вернуться назад</a>
+    </form>
+</div>

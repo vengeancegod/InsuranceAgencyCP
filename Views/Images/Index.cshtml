@@ -1,0 +1,74 @@
+﻿@model List<string>
+
+<script language="JavaScript">
+    window.onbeforeunload = function () {
+        localStorage.setItem('save', document.getElementById('textareaInfo').value);
+    }
+    window.onload = function () {
+        document.getElementById('textareaInfo').value = localStorage.getItem('save');
+    }
+    function AddInfoImages() {
+        document.getElementById('textareaInfo').value = document.getElementById('buttonInfoImages').value.replace(/.+[\\\/]/, "");
+    };
+</script>
+<style>
+    body {
+        background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+    }
+    .scale {
+        transition: 1s;
+    }
+
+        .scale:hover {
+            transform: scale(1.2);
+        }
+</style>
+@if (User.IsInRole("Клиент"))
+{
+    <h1>Онлайн экспертиза</h1>
+    <h3>Отправьте фото страхового объекта на проверку страховому агенту!</h3>
+    @foreach (var imagePath in Model)
+    {
+        <div class="col-md-5">
+            <div class="alert alert-success" role="alert">
+                <h6>Страховой объект</h6>
+                    <img src="~/uploads/@imagePath" alt="image" height="200px" width="350" class="scale" />
+                <a href="/Images/DownloadFile/?filePath=@imagePath">Скачать</a>
+            </div>
+        </div>
+    }
+    @using (Html.BeginForm("Index", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="form-group col-md-6">
+                <input type="file" class="form-control" name="myfile" />
+            </div>
+            <div class="form-group col-md-6">
+                <input type="submit" value="Отправить фото" name="filesubmit" />
+            </div>
+        </div>
+    }
+    <h3>Здесь вы сможете увидеть информацию от страхового агента !!!</h3>
+    <textarea readonly type="text" id="textareaInfo" rows="10" cols="170"></textarea>
+}
+@if (User.IsInRole("Страховой агент"))
+{
+    <h1>Фото клиентов:</h1>
+    @foreach (var imagePath in Model)
+    {
+        <div class="col-md-5">
+            <div class="alert alert-success" role="alert">
+                <h6>Страховой объект</h6>
+                    <img src="~/uploads/@imagePath" alt="image" height="200px" width="350" class="scale" />
+                <a href="/Images/DownloadFile/?filePath=@imagePath">Скачать</a>
+
+                <a href="/Images/DeleteFile/?filePath=@imagePath">Удалить</a>
+            </div>
+        </div>
+    }
+    <label style="margin-right:10px">Введите информацию по страховым объектам:</label>
+    <input type="text" onchange="AddInfoImages();" id="buttonInfoImages">
+    <input style="background: #B0C4DE; border-radius: 5px;" type="submit" value="Добавить" />
+    <br>
+    <textarea type="text" id="textareaInfo" rows="10" cols="170"></textarea>
+}

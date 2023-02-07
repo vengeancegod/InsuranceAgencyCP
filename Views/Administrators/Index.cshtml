@@ -1,0 +1,35 @@
+﻿@model IEnumerable<InsuranceAgency__.Models.Administrator>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Список администраторов</h1>
+
+<p>
+    <a asp-action="Create">Добавить нового администратора</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Фио администратора</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FIO)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> 
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> 
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a href="\Home\Index">Вернуться назад</a>
+</div>

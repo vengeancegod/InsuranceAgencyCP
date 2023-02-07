@@ -1,0 +1,93 @@
+﻿@model IEnumerable<InsuranceAgency__.Models.Manager>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .row {
+        margin-left: 0.1%;
+    }
+
+    main {
+        width: 98%;
+        margin: 0 auto;
+    }
+
+    table {
+        border: solid 5px #B0C4DE;
+    }
+
+    th {
+        border: solid 5px #B0C4DE;
+    }
+
+    td {
+        border: solid 5px #B0C4DE;
+    }
+
+    body {
+        background-color: white;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    th {
+        padding: 19px;
+    }
+</style>
+<h1>Список менеджеров</h1>
+
+<p>
+    <a asp-action="Create">Добавить нового менеджера</a>
+</p>
+
+<form id="formSearch" method="post">
+    <div class="row" id="SearchBox">
+        <p>
+            <input type="text" id="FIO" name="FIO" placeholder="Поиск по ФИО" />
+            <input type="submit" id="submitsearch" value="Поиск" />
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ФИО
+            </th>
+            <th>
+                Дата рождения
+            </th>
+            <th>
+                Возраст
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a href="\Home\Index">Вернуться назад</a>
+</div>
